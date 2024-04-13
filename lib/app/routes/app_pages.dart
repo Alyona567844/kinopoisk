@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:kinopoisk/app/modules/first/first_binding.dart';
-import 'package:kinopoisk/app/modules/first/first_page.dart';
 import 'package:kinopoisk/app/modules/init/init_binding.dart';
 import 'package:kinopoisk/app/modules/init/init_page.dart';
 import 'package:kinopoisk/app/modules/main/main_binding.dart';
@@ -19,10 +17,5 @@ abstract class AppPages {
       page: () => const MainPage(),
       binding: MainBinding(),
     ),
-    // GetPage(
-    //   name: Routes.FIRST,
-    //   page: () => const FirstPage(),
-    //   binding: FirstBinding(),
-    // ),
   ];
 }

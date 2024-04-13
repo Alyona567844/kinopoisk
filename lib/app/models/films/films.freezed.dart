@@ -23,7 +23,12 @@ mixin _$Films {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get year => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String get description =>
+      throw _privateConstructorUsedError; // required double rating,
+// poster,
+  int get ageRating => throw _privateConstructorUsedError;
+  List<Genres> get genres => throw _privateConstructorUsedError;
+  List<Countries> get countries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +40,14 @@ abstract class $FilmsCopyWith<$Res> {
   factory $FilmsCopyWith(Films value, $Res Function(Films) then) =
       _$FilmsCopyWithImpl<$Res, Films>;
   @useResult
-  $Res call({int id, String name, int year, String description});
+  $Res call(
+      {int id,
+      String name,
+      int year,
+      String description,
+      int ageRating,
+      List<Genres> genres,
+      List<Countries> countries});
 }
 
 /// @nodoc
@@ -55,6 +67,9 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
     Object? name = null,
     Object? year = null,
     Object? description = null,
+    Object? ageRating = null,
+    Object? genres = null,
+    Object? countries = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,6 +88,18 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      ageRating: null == ageRating
+          ? _value.ageRating
+          : ageRating // ignore: cast_nullable_to_non_nullable
+              as int,
+      genres: null == genres
+          ? _value.genres
+          : genres // ignore: cast_nullable_to_non_nullable
+              as List<Genres>,
+      countries: null == countries
+          ? _value.countries
+          : countries // ignore: cast_nullable_to_non_nullable
+              as List<Countries>,
     ) as $Val);
   }
 }
@@ -84,7 +111,14 @@ abstract class _$$FilmsImplCopyWith<$Res> implements $FilmsCopyWith<$Res> {
       __$$FilmsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, int year, String description});
+  $Res call(
+      {int id,
+      String name,
+      int year,
+      String description,
+      int ageRating,
+      List<Genres> genres,
+      List<Countries> countries});
 }
 
 /// @nodoc
@@ -102,6 +136,9 @@ class __$$FilmsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? year = null,
     Object? description = null,
+    Object? ageRating = null,
+    Object? genres = null,
+    Object? countries = null,
   }) {
     return _then(_$FilmsImpl(
       id: null == id
@@ -120,6 +157,18 @@ class __$$FilmsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      ageRating: null == ageRating
+          ? _value.ageRating
+          : ageRating // ignore: cast_nullable_to_non_nullable
+              as int,
+      genres: null == genres
+          ? _value._genres
+          : genres // ignore: cast_nullable_to_non_nullable
+              as List<Genres>,
+      countries: null == countries
+          ? _value._countries
+          : countries // ignore: cast_nullable_to_non_nullable
+              as List<Countries>,
     ));
   }
 }
@@ -131,7 +180,12 @@ class _$FilmsImpl implements _Films {
       {required this.id,
       required this.name,
       required this.year,
-      required this.description});
+      required this.description,
+      required this.ageRating,
+      required final List<Genres> genres,
+      required final List<Countries> countries})
+      : _genres = genres,
+        _countries = countries;
 
   factory _$FilmsImpl.fromJson(Map<String, dynamic> json) =>
       _$$FilmsImplFromJson(json);
@@ -144,10 +198,29 @@ class _$FilmsImpl implements _Films {
   final int year;
   @override
   final String description;
+// required double rating,
+// poster,
+  @override
+  final int ageRating;
+  final List<Genres> _genres;
+  @override
+  List<Genres> get genres {
+    if (_genres is EqualUnmodifiableListView) return _genres;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_genres);
+  }
+
+  final List<Countries> _countries;
+  @override
+  List<Countries> get countries {
+    if (_countries is EqualUnmodifiableListView) return _countries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_countries);
+  }
 
   @override
   String toString() {
-    return 'Films(id: $id, name: $name, year: $year, description: $description)';
+    return 'Films(id: $id, name: $name, year: $year, description: $description, ageRating: $ageRating, genres: $genres, countries: $countries)';
   }
 
   @override
@@ -159,12 +232,25 @@ class _$FilmsImpl implements _Films {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.year, year) || other.year == year) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.ageRating, ageRating) ||
+                other.ageRating == ageRating) &&
+            const DeepCollectionEquality().equals(other._genres, _genres) &&
+            const DeepCollectionEquality()
+                .equals(other._countries, _countries));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, year, description);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      year,
+      description,
+      ageRating,
+      const DeepCollectionEquality().hash(_genres),
+      const DeepCollectionEquality().hash(_countries));
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +271,10 @@ abstract class _Films implements Films {
       {required final int id,
       required final String name,
       required final int year,
-      required final String description}) = _$FilmsImpl;
+      required final String description,
+      required final int ageRating,
+      required final List<Genres> genres,
+      required final List<Countries> countries}) = _$FilmsImpl;
 
   factory _Films.fromJson(Map<String, dynamic> json) = _$FilmsImpl.fromJson;
 
@@ -197,6 +286,13 @@ abstract class _Films implements Films {
   int get year;
   @override
   String get description;
+  @override // required double rating,
+// poster,
+  int get ageRating;
+  @override
+  List<Genres> get genres;
+  @override
+  List<Countries> get countries;
   @override
   @JsonKey(ignore: true)
   _$$FilmsImplCopyWith<_$FilmsImpl> get copyWith =>

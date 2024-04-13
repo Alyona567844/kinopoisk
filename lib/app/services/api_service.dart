@@ -12,12 +12,13 @@ class ApiService extends GetxService {
   );
 
   Future<ApiResponse<T>> getMovies<T>(
-      {int? year, String? name, String? description}) async {
+      {int? year, String? name, String? description, double? rating}) async {
     try {
       final Map<String, dynamic> queryParameters = {};
       if (year != null) queryParameters['year'] = year;
       if (name != null) queryParameters['name'] = name;
       if (description != null) queryParameters['description'] = description;
+      if (rating != null) queryParameters['rating.kp'] = rating;
       var response = await client.get(
         '/movie',
         queryParameters: queryParameters,

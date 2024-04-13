@@ -11,6 +11,13 @@ _$FilmsImpl _$$FilmsImplFromJson(Map<String, dynamic> json) => _$FilmsImpl(
       name: json['name'] as String,
       year: json['year'] as int,
       description: json['description'] as String,
+      ageRating: json['ageRating'] as int,
+      genres: (json['genres'] as List<dynamic>)
+          .map((e) => Genres.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      countries: (json['countries'] as List<dynamic>)
+          .map((e) => Countries.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$FilmsImplToJson(_$FilmsImpl instance) =>
@@ -19,4 +26,7 @@ Map<String, dynamic> _$$FilmsImplToJson(_$FilmsImpl instance) =>
       'name': instance.name,
       'year': instance.year,
       'description': instance.description,
+      'ageRating': instance.ageRating,
+      'genres': instance.genres,
+      'countries': instance.countries,
     };
