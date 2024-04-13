@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:kinopoisk/app/modules/find/find_controller.dart';
 
 class FindPage extends GetView<FindController> {
-  final VoidCallback onButtonPressed;
 
-  const FindPage({super.key, required this.onButtonPressed});
+  const FindPage({super.key});
 
   @override
   Widget build(BuildContext context) {

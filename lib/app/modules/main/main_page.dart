@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinopoisk/app/constants/constants.dart';
 import 'package:kinopoisk/app/modules/find/find_page.dart';
+import 'package:kinopoisk/app/modules/first/first_controller.dart';
 import 'package:kinopoisk/app/modules/first/first_page.dart';
 import 'package:kinopoisk/app/modules/main/main_controller.dart';
 import 'package:kinopoisk/app/modules/media/media_page.dart';
 import 'package:kinopoisk/app/modules/my/my_page.dart';
 import 'package:kinopoisk/app/modules/profile/profile_page.dart';
+import 'package:kinopoisk/app/repositories/api_repository.dart';
 
 class MainPage extends GetView<MainController> {
   const MainPage({super.key});
@@ -219,6 +221,7 @@ class MainPage extends GetView<MainController> {
           // selectedLabelStyle: const TextStyle(color: colorO),
           // selectedFontSize: 10.0,
           // unselectedFontSize: 20.0,
+          // showSelectedLabels: true,
           items: [
             BottomNavigationBarItem(
               icon: Image.network(
@@ -240,10 +243,10 @@ class MainPage extends GetView<MainController> {
             ),
             BottomNavigationBarItem(
               icon: Image.network(
-                'https://cdn-icons-png.flaticon.com/128/15434/15434089.png',
+                'https://cdn-icons-png.flaticon.com/128/2791/2791737.png',
                 color: controller.selectPage.value == 2 ? colorO : colorG,
-                width: 24,
-                height: 24,
+                width: 32,
+                height: 32,
               ),
               label: 'Моё',
             ),
@@ -260,8 +263,8 @@ class MainPage extends GetView<MainController> {
               icon: Image.network(
                 'https://cdn-icons-png.flaticon.com/128/4526/4526817.png',
                 color: controller.selectPage.value == 4 ? colorO : colorG,
-                width: 22,
-                height: 22,
+                width: 24,
+                height: 24,
               ),
               label: 'Профиль',
             ),
@@ -276,15 +279,22 @@ class MainPage extends GetView<MainController> {
   Widget getPage(int index) {
     switch (index) {
       case 0:
-        return FirstPage(onButtonPressed: () => controller.pageTap(0));
+        // return const FirstPage();
+        return GetBuilder<FirstController>(
+          init: FirstController(ApiRepository()),
+          builder: (_) {
+            return const FirstPage();
+          },
+        );
+      // return const FirstWidget();
       case 1:
-        return MediaPage(onButtonPressed: () => controller.pageTap(1));
+        return const MediaPage();
       case 2:
-        return MyPage(onButtonPressed: () => controller.pageTap(2));
+        return const MyPage();
       case 3:
-        return FindPage(onButtonPressed: () => controller.pageTap(3));
+        return const FindPage();
       case 4:
-        return ProfilePage(onButtonPressed: () => controller.pageTap(4));
+        return const ProfilePage();
       default:
         return Container();
     }

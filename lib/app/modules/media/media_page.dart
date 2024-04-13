@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:kinopoisk/app/modules/media/media_controller.dart';
 
 class MediaPage extends GetView<MediaController> {
-  final VoidCallback onButtonPressed;
 
-  const MediaPage({super.key, required this.onButtonPressed});
+  const MediaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
