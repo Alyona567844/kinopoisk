@@ -9,7 +9,7 @@ void main() async {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: Routes.INIT,
+      initialRoute: Routes.MAIN,
     ),
   );
 }

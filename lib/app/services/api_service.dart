@@ -3,25 +3,22 @@ import 'package:dio/dio.dart';
 import 'package:kinopoisk/app/models/api_response/api_response.dart';
 
 class ApiService extends GetxService {
-  Future<ApiService> init() async {
-    return this;
-  }
 
   var client = Dio(
-    BaseOptions(baseUrl: 'https://api.kinopoisk.dev/v1.4/'),
+    BaseOptions(baseUrl: 'https://api.kinopoisk.dev/'),
   );
 
-  Future<ApiResponse<T>> getMovies<T>(
-      {int? year, String? name, String? description, double? rating}) async {
+  Future<ApiResponse<T>> getMovies<T>(String url) async {
     try {
-      final Map<String, dynamic> queryParameters = {};
-      if (year != null) queryParameters['year'] = year;
-      if (name != null) queryParameters['name'] = name;
-      if (description != null) queryParameters['description'] = description;
-      if (rating != null) queryParameters['rating.kp'] = rating;
+      // final Map<String, dynamic> queryParameters = {};
+      // if (year != null) queryParameters['year'] = year;
+      // if (name != null) queryParameters['name'] = name;
+      // if (description != null) queryParameters['description'] = description;
+      // if (rating != null) queryParameters['rating.kp'] = rating;
       var response = await client.get(
-        '/movie',
-        queryParameters: queryParameters,
+        url,
+        // '/movie',
+        // queryParameters: queryParameters,
         options: Options(
           headers: {
             'Accept': 'application/json',

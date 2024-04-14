@@ -143,22 +143,69 @@ class FirstPage extends GetView<FirstController> {
             Obx(
               () => controller.films.when(
                 loading: () => const Text("Status:loading"),
-                success: (List<Films> list) => ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    var films = list[index];
-                    List<String> genres = films.genres.map((genre) => genre.name).toList();
-                    String genrStr = genres.join(",");
-                    List<String> countries = films.countries.map((country) => country.name).toList();
-                    String countryStr = countries.join(",");
-                    return ListTile(
-                      title: Text(films.name),
-                      subtitle: Text(countryStr),
-                      trailing: Text('${films.ageRating}'),
-                    );
-                  },
-                ),
+                success: (Map<String, List<Films>> lists) {
+                  List<Films> sortNew = lists['sortNew'] ?? [];
+                  return SizedBox(
+                    height: 218,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: sortNew.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var film = sortNew[index];
+                        return Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 5, right: 5, top: 0, bottom: 38),
+                              child: Container(
+                                width: 125,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(film.poster.url),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: MediaQuery.of(context).size.width * 0.02,
+                              top: MediaQuery.of(context).size.width * 0.01,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 3, vertical: 1),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 18, 164, 64),
+                                ),
+                                child: Text(
+                                  '${film.rating.imdb}',
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              left: MediaQuery.of(context).size.width * 0.01,
+                              child: Container(
+                                color: Colors.white,
+                                width: 125,
+                                child: Text(
+                                  film.name,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                },
                 failed: (message, error) => Column(
                   children: [
                     const Text("Status error"),
@@ -173,4 +220,9 @@ class FirstPage extends GetView<FirstController> {
     );
   }
 }
-
+// List<String> genres =
+                      //     films.genres.map((genre) => genre.name).toList();
+                      // String genrStr = genres.join(",");
+                      // List<String> countries =
+                      //     films.countries.map((country) => country.name).toList();
+                      // String countryStr = countries.join(",");

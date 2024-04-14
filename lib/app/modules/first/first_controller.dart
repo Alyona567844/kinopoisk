@@ -7,7 +7,7 @@ class FirstController extends GetxController {
   ApiRepository apiRepository;
   FirstController(this.apiRepository);
 
-  final _films = ApiResponse<List<Films>>.loading().obs;
+  final _films = ApiResponse<Map<String, List<Films>>>.loading().obs;
 
   @override
   void onInit() {
@@ -16,8 +16,8 @@ class FirstController extends GetxController {
   }
 
   Future<void> getFilms() async {
-    _films.value = ApiResponse<List<Films>>.loading();
+    _films.value = ApiResponse<Map<String, List<Films>>>.loading();
     _films.value = await apiRepository.getFilms();
   }
-  ApiResponse<List<Films>> get films => _films.value;
+  ApiResponse<Map<String, List<Films>>> get films => _films.value;
 }

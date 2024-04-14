@@ -23,9 +23,9 @@ mixin _$Films {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get year => throw _privateConstructorUsedError;
-  String get description =>
-      throw _privateConstructorUsedError; // required double rating,
-// poster,
+  String get description => throw _privateConstructorUsedError;
+  Rating get rating => throw _privateConstructorUsedError;
+  Poster get poster => throw _privateConstructorUsedError;
   int get ageRating => throw _privateConstructorUsedError;
   List<Genres> get genres => throw _privateConstructorUsedError;
   List<Countries> get countries => throw _privateConstructorUsedError;
@@ -45,9 +45,14 @@ abstract class $FilmsCopyWith<$Res> {
       String name,
       int year,
       String description,
+      Rating rating,
+      Poster poster,
       int ageRating,
       List<Genres> genres,
       List<Countries> countries});
+
+  $RatingCopyWith<$Res> get rating;
+  $PosterCopyWith<$Res> get poster;
 }
 
 /// @nodoc
@@ -67,6 +72,8 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
     Object? name = null,
     Object? year = null,
     Object? description = null,
+    Object? rating = null,
+    Object? poster = null,
     Object? ageRating = null,
     Object? genres = null,
     Object? countries = null,
@@ -88,6 +95,14 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as Rating,
+      poster: null == poster
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as Poster,
       ageRating: null == ageRating
           ? _value.ageRating
           : ageRating // ignore: cast_nullable_to_non_nullable
@@ -101,6 +116,22 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
           : countries // ignore: cast_nullable_to_non_nullable
               as List<Countries>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RatingCopyWith<$Res> get rating {
+    return $RatingCopyWith<$Res>(_value.rating, (value) {
+      return _then(_value.copyWith(rating: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PosterCopyWith<$Res> get poster {
+    return $PosterCopyWith<$Res>(_value.poster, (value) {
+      return _then(_value.copyWith(poster: value) as $Val);
+    });
   }
 }
 
@@ -116,9 +147,16 @@ abstract class _$$FilmsImplCopyWith<$Res> implements $FilmsCopyWith<$Res> {
       String name,
       int year,
       String description,
+      Rating rating,
+      Poster poster,
       int ageRating,
       List<Genres> genres,
       List<Countries> countries});
+
+  @override
+  $RatingCopyWith<$Res> get rating;
+  @override
+  $PosterCopyWith<$Res> get poster;
 }
 
 /// @nodoc
@@ -136,6 +174,8 @@ class __$$FilmsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? year = null,
     Object? description = null,
+    Object? rating = null,
+    Object? poster = null,
     Object? ageRating = null,
     Object? genres = null,
     Object? countries = null,
@@ -157,6 +197,14 @@ class __$$FilmsImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as Rating,
+      poster: null == poster
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as Poster,
       ageRating: null == ageRating
           ? _value.ageRating
           : ageRating // ignore: cast_nullable_to_non_nullable
@@ -181,6 +229,8 @@ class _$FilmsImpl implements _Films {
       required this.name,
       required this.year,
       required this.description,
+      required this.rating,
+      required this.poster,
       required this.ageRating,
       required final List<Genres> genres,
       required final List<Countries> countries})
@@ -198,8 +248,10 @@ class _$FilmsImpl implements _Films {
   final int year;
   @override
   final String description;
-// required double rating,
-// poster,
+  @override
+  final Rating rating;
+  @override
+  final Poster poster;
   @override
   final int ageRating;
   final List<Genres> _genres;
@@ -220,7 +272,7 @@ class _$FilmsImpl implements _Films {
 
   @override
   String toString() {
-    return 'Films(id: $id, name: $name, year: $year, description: $description, ageRating: $ageRating, genres: $genres, countries: $countries)';
+    return 'Films(id: $id, name: $name, year: $year, description: $description, rating: $rating, poster: $poster, ageRating: $ageRating, genres: $genres, countries: $countries)';
   }
 
   @override
@@ -233,6 +285,8 @@ class _$FilmsImpl implements _Films {
             (identical(other.year, year) || other.year == year) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.poster, poster) || other.poster == poster) &&
             (identical(other.ageRating, ageRating) ||
                 other.ageRating == ageRating) &&
             const DeepCollectionEquality().equals(other._genres, _genres) &&
@@ -248,6 +302,8 @@ class _$FilmsImpl implements _Films {
       name,
       year,
       description,
+      rating,
+      poster,
       ageRating,
       const DeepCollectionEquality().hash(_genres),
       const DeepCollectionEquality().hash(_countries));
@@ -272,6 +328,8 @@ abstract class _Films implements Films {
       required final String name,
       required final int year,
       required final String description,
+      required final Rating rating,
+      required final Poster poster,
       required final int ageRating,
       required final List<Genres> genres,
       required final List<Countries> countries}) = _$FilmsImpl;
@@ -286,8 +344,11 @@ abstract class _Films implements Films {
   int get year;
   @override
   String get description;
-  @override // required double rating,
-// poster,
+  @override
+  Rating get rating;
+  @override
+  Poster get poster;
+  @override
   int get ageRating;
   @override
   List<Genres> get genres;

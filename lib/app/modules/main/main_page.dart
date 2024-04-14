@@ -20,7 +20,43 @@ class MainPage extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => getPage(controller.selectPage.value)),
+      body: Obx(
+        () => IndexedStack(
+          index: controller.selectPage.value,
+          children: [
+            GetBuilder<FirstController>(
+              init: FirstController(ApiRepository()),
+              builder: (_) {
+                return const FirstPage();
+              },
+            ),
+            GetBuilder<MediaController>(
+              init: MediaController(),
+              builder: (_) {
+                return const MediaPage();
+              },
+            ),
+            GetBuilder<MyController>(
+              init: MyController(),
+              builder: (_) {
+                return const MyPage();
+              },
+            ),
+            GetBuilder<FindController>(
+              init: FindController(),
+              builder: (_) {
+                return const FindPage();
+              },
+            ),
+            GetBuilder<ProfileController>(
+              init: ProfileController(),
+              builder: (_) {
+                return const ProfilePage();
+              },
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           selectedItemColor: colorO,
@@ -78,51 +114,9 @@ class MainPage extends GetView<MainController> {
             ),
           ],
           currentIndex: controller.selectPage.value,
-          onTap: controller.pageTap,
+          onTap: (index)=> controller.pageTap(index),
         ),
       ),
     );
-  }
-
-  Widget getPage(int index) {
-    switch (index) {
-      case 0:
-        return GetBuilder<FirstController>(
-          init: FirstController(ApiRepository()),
-          builder: (_) {
-            return const FirstPage();
-          },
-        );
-      case 1:
-        return GetBuilder<MediaController>(
-          init: MediaController(),
-          builder: (_) {
-            return const MediaPage();
-          },
-        );
-      case 2:
-        return GetBuilder<MyController>(
-          init: MyController(),
-          builder: (_) {
-            return const MyPage();
-          },
-        );
-      case 3:
-        return GetBuilder<FindController>(
-          init: FindController(),
-          builder: (_) {
-            return const FindPage();
-          },
-        );
-      case 4:
-        return GetBuilder<ProfileController>(
-          init: ProfileController(),
-          builder: (_) {
-            return const ProfilePage();
-          },
-        );
-      default:
-        return Container();
-    }
   }
 }

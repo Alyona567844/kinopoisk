@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kinopoisk/app/models/countries/countries.dart';
 import 'package:kinopoisk/app/models/genres/genres.dart';
+import 'package:kinopoisk/app/models/poster/poster.dart';
+import 'package:kinopoisk/app/models/rating/rating.dart';
 
 part 'films.freezed.dart';
 part 'films.g.dart';
@@ -13,8 +15,8 @@ class Films with _$Films {
     required String name,
     required int year,
     required String description,
-    // required double rating,
-    // poster,
+    required Rating rating,
+    required Poster poster,
     required int ageRating,
     required List<Genres> genres,
     required List<Countries> countries,
