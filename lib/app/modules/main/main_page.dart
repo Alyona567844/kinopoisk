@@ -28,11 +28,11 @@ class MainPage extends GetView<MainController> {
             GetBuilder<FirstController>(
               init: FirstController(ApiRepository()),
               builder: (_) {
-                return FirstPage();
+                return const FirstPage();
               },
             ),
             GetBuilder<MediaController>(
-              init: MediaController(),
+              init: MediaController(ApiRepository()),
               builder: (_) {
                 return const MediaPage();
               },

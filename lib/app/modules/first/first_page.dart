@@ -6,11 +6,9 @@ import 'package:kinopoisk/app/models/films/films.dart';
 import 'package:kinopoisk/app/modules/film/film_controller.dart';
 import 'package:kinopoisk/app/modules/film/film_page.dart';
 import 'package:kinopoisk/app/modules/first/first_controller.dart';
-import 'package:kinopoisk/app/modules/main/main_controller.dart';
 
 class FirstPage extends GetView<FirstController> {
-  final MainController mainController = Get.find();
-  FirstPage({super.key});
+  const FirstPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -294,6 +292,206 @@ class FirstPage extends GetView<FirstController> {
                           //   );
                           // },
                           // onTap: () => Get.toNamed('film', arguments: film),
+                          onTap: () {
+                            filmController.updatethisfilm(film);
+                            Get.to(()=>FilmPage());
+                          },
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 0, top: 0, bottom: 46),
+                                child: Container(
+                                  width: 145,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(film.poster.url),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: MediaQuery.of(context).size.width * 0.035,
+                                top: MediaQuery.of(context).size.width * 0.01,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3, vertical: 1),
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 18, 164, 64),
+                                  ),
+                                  child: Text(
+                                    '${film.rating.imdb}',
+                                    style: const TextStyle(
+                                        fontSize: 13, color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                left:
+                                    MediaQuery.of(context).size.width * 0.0264,
+                                child: Container(
+                                  color: Colors.white,
+                                  width: 150,
+                                  child: Text(
+                                    film.name,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+                failed: (message, error) => Column(
+                  children: [
+                    const Text("Status error"),
+                    Text(message),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Text(
+                      'Сериалы на ваш вкус',
+                      style: textB,
+                    ),
+                  ),
+                  Text(
+                    'Все',
+                    style: textO,
+                  )
+                ],
+              ),
+            ),
+            Obx(
+              () => controller.films.when(
+                loading: () => const Text("Status:loading"),
+                success: (Map<String, List<Films>> lists) {
+                  List<Films> serials = lists['serials'] ?? [];
+                  return SizedBox(
+                    height: 266,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: serials.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var film = serials[index];
+                        return GestureDetector(
+                          onTap: () {
+                            filmController.updatethisfilm(film);
+                            Get.to(()=>FilmPage());
+                          },
+                          child: Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 0, top: 0, bottom: 46),
+                                child: Container(
+                                  width: 145,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(film.poster.url),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: MediaQuery.of(context).size.width * 0.035,
+                                top: MediaQuery.of(context).size.width * 0.01,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3, vertical: 1),
+                                  decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 18, 164, 64),
+                                  ),
+                                  child: Text(
+                                    '${film.rating.imdb}',
+                                    style: const TextStyle(
+                                        fontSize: 13, color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                left:
+                                    MediaQuery.of(context).size.width * 0.0264,
+                                child: Container(
+                                  color: Colors.white,
+                                  width: 150,
+                                  child: Text(
+                                    film.name,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+                failed: (message, error) => Column(
+                  children: [
+                    const Text("Status error"),
+                    Text(message),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Text(
+                      'Для любителей мультфильмов',
+                      style: textB,
+                    ),
+                  ),
+                  Text(
+                    'Все',
+                    style: textO,
+                  )
+                ],
+              ),
+            ),
+            Obx(
+              () => controller.films.when(
+                loading: () => const Text("Status:loading"),
+                success: (Map<String, List<Films>> lists) {
+                  List<Films> cartoon = lists['cartoon'] ?? [];
+                  return SizedBox(
+                    height: 266,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: cartoon.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var film = cartoon[index];
+                        return GestureDetector(
                           onTap: () {
                             filmController.updatethisfilm(film);
                             Get.to(()=>FilmPage());

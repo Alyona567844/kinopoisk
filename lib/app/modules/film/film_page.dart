@@ -95,11 +95,10 @@ class FilmPage extends GetView<FilmController> {
                             final self = controller.selectedfilm!;
                             if (myController.myfilms.contains(self)) {
                               myController.deletefilm(self);
-                              controller.selectColor();
                             } else {
                               myController.addfilm(controller.selectedfilm!);
-                              controller.selectColor();
                             }
+                            controller.selectColor();
                           }
                         },
                         child: Column(
@@ -113,6 +112,10 @@ class FilmPage extends GetView<FilmController> {
                                           ?.value ??
                                       Colors.white
                                   : Colors.white,
+                              // color: myController.myfilms
+                              //         .contains(controller.selectedfilm)
+                              //     ? colorO
+                              //     : colorG,
                             ),
                             Text(
                               'Буду смотреть',

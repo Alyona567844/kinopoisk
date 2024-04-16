@@ -26,6 +26,8 @@ class FilmController extends GetxController {
       }
       if (myController.myfilms.contains(film)) {
         colors[film]!.value = colorO;
+      } else {
+        colors[film]!.value = Colors.white;
       }
     }
   }

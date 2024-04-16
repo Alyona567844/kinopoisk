@@ -179,7 +179,7 @@ class ProfilePage extends GetView<ProfileController> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text('Выйти из аккаунта', style: textB)
+            const Text('Выйти из аккаунта', style: catText)
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinopoisk/app/constants/constants.dart';
+import 'package:kinopoisk/app/modules/film/film_page.dart';
 import 'package:kinopoisk/app/modules/my/my_controller.dart';
 
 class MyPage extends GetView<MyController> {
@@ -37,80 +38,83 @@ class MyPage extends GetView<MyController> {
               ),
             ),
             Obx(
-              () => SizedBox(
-                height: 225,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: controller.myfilms.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var film = controller.myfilms[index];
-                    List<String> genres =
-                        film.genres.map((genre) => genre.name).toList();
-                    String genrStr = genres[0];
-                    return Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 0, top: 0, bottom: 67),
-                          child: Container(
-                            width: 110,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(film.poster.url),
-                                fit: BoxFit.fill,
+              () => GestureDetector(
+                onTap: () => Get.to(()=>FilmPage()),
+                child: SizedBox(
+                  height: 225,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: controller.myfilms.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var film = controller.myfilms[index];
+                      List<String> genres =
+                          film.genres.map((genre) => genre.name).toList();
+                      String genrStr = genres[0];
+                      return Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, right: 0, top: 0, bottom: 67),
+                            child: Container(
+                              width: 110,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(film.poster.url),
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          left: MediaQuery.of(context).size.width * 0.046,
-                          top: MediaQuery.of(context).size.width * 0.01,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 3, vertical: 1),
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 18, 164, 64),
-                            ),
-                            child: Text(
-                              '${film.rating.imdb}',
-                              style: const TextStyle(
-                                  fontSize: 13, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: MediaQuery.of(context).size.width * 0.0381,
-                          child: Container(
-                            color: Colors.white,
-                            width: 110,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  film.name,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  genrStr,
-                                  style: const TextStyle(
-                                    color: colorG,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
+                          Positioned(
+                            left: MediaQuery.of(context).size.width * 0.046,
+                            top: MediaQuery.of(context).size.width * 0.01,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 3, vertical: 1),
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 18, 164, 64),
+                              ),
+                              child: Text(
+                                '${film.rating.imdb}',
+                                style: const TextStyle(
+                                    fontSize: 13, color: Colors.white),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    );
-                  },
+                          Positioned(
+                            bottom: 0,
+                            left: MediaQuery.of(context).size.width * 0.0381,
+                            child: Container(
+                              color: Colors.white,
+                              width: 110,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    film.name,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    genrStr,
+                                    style: const TextStyle(
+                                      color: colorG,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

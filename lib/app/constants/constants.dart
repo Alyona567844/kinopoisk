@@ -17,7 +17,7 @@ const textO = TextStyle(
 const textMain =
     TextStyle(color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold);
 
-const containerColor = Color.fromARGB(255, 224, 224, 224);
+const containerColor = Color.fromARGB(255, 240, 239, 239);
 
 var buttonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all<Color>(containerColor),

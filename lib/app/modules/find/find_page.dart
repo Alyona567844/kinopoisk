@@ -9,7 +9,33 @@ class FindPage extends GetView<FindController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('FindPage')),
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: containerColor,
+            hintText: 'Фильмы, сериалы, персоны',
+            prefixIcon: IconButton(
+              onPressed: () {},
+              icon: Image.network(
+                'https://cdn-icons-png.flaticon.com/128/149/149852.png',
+                color: colorG,
+                width: 20,
+                height: 20,
+              ),
+            ),
+            suffixIcon: IconButton(
+              onPressed: () {},
+              icon: Image.network(
+                'https://cdn-icons-png.flaticon.com/128/512/512158.png',
+                color: colorG,
+                width: 20,
+                height: 20,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -30,8 +56,10 @@ class FindPage extends GetView<FindController> {
                         style: buttonStyle,
                         child: const Text('Фильмы', style: catText),
                       ),
+                      const SizedBox(width: 10),
                       ElevatedButton(
                         onPressed: () {},
+                        style: buttonStyle,
                         child: const Text('Онлайн-кинотеатр', style: catText),
                       )
                     ],
@@ -44,8 +72,10 @@ class FindPage extends GetView<FindController> {
                         style: buttonStyle,
                         child: const Text('Жанры', style: catText),
                       ),
+                      const SizedBox(width: 10),
                       ElevatedButton(
                         onPressed: () {},
+                        style: buttonStyle,
                         child: const Text('Страны', style: catText),
                       )
                     ],
@@ -58,6 +88,7 @@ class FindPage extends GetView<FindController> {
                         style: buttonStyle,
                         child: const Text('Годы', style: catText),
                       ),
+                      const SizedBox(width: 10),
                       ElevatedButton(
                         onPressed: () {},
                         style: buttonStyle,
@@ -73,6 +104,7 @@ class FindPage extends GetView<FindController> {
                         style: buttonStyle,
                         child: const Text('Сериалы', style: catText),
                       ),
+                      const SizedBox(width: 10),
                       ElevatedButton(
                         onPressed: () {},
                         style: buttonStyle,
@@ -88,6 +120,7 @@ class FindPage extends GetView<FindController> {
                         style: buttonStyle,
                         child: const Text('Премии', style: catText),
                       ),
+                      const SizedBox(width: 10),
                       ElevatedButton(
                         onPressed: () {},
                         style: buttonStyle,
