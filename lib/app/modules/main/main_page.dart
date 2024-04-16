@@ -15,6 +15,7 @@ import 'package:kinopoisk/app/modules/profile/profile_page.dart';
 import 'package:kinopoisk/app/repositories/api_repository.dart';
 
 class MainPage extends GetView<MainController> {
+
   const MainPage({super.key});
 
   @override
@@ -27,7 +28,7 @@ class MainPage extends GetView<MainController> {
             GetBuilder<FirstController>(
               init: FirstController(ApiRepository()),
               builder: (_) {
-                return const FirstPage();
+                return FirstPage();
               },
             ),
             GetBuilder<MediaController>(
@@ -59,6 +60,7 @@ class MainPage extends GetView<MainController> {
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           selectedItemColor: colorO,
           // unselectedItemColor: colorG,
           // unselectedLabelStyle: const TextStyle(color: colorG),
@@ -114,7 +116,7 @@ class MainPage extends GetView<MainController> {
             ),
           ],
           currentIndex: controller.selectPage.value,
-          onTap: (index)=> controller.pageTap(index),
+          onTap: (index) => controller.pageTap(index),
         ),
       ),
     );

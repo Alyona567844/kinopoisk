@@ -23,6 +23,7 @@ mixin _$Films {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get year => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Rating get rating => throw _privateConstructorUsedError;
   Poster get poster => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $FilmsCopyWith<$Res> {
       {int id,
       String name,
       int year,
+      String type,
       String description,
       Rating rating,
       Poster poster,
@@ -71,6 +73,7 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
     Object? id = null,
     Object? name = null,
     Object? year = null,
+    Object? type = null,
     Object? description = null,
     Object? rating = null,
     Object? poster = null,
@@ -91,6 +94,10 @@ class _$FilmsCopyWithImpl<$Res, $Val extends Films>
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
               as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -146,6 +153,7 @@ abstract class _$$FilmsImplCopyWith<$Res> implements $FilmsCopyWith<$Res> {
       {int id,
       String name,
       int year,
+      String type,
       String description,
       Rating rating,
       Poster poster,
@@ -173,6 +181,7 @@ class __$$FilmsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? year = null,
+    Object? type = null,
     Object? description = null,
     Object? rating = null,
     Object? poster = null,
@@ -193,6 +202,10 @@ class __$$FilmsImplCopyWithImpl<$Res>
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
               as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -228,6 +241,7 @@ class _$FilmsImpl implements _Films {
       {required this.id,
       required this.name,
       required this.year,
+      required this.type,
       required this.description,
       required this.rating,
       required this.poster,
@@ -246,6 +260,8 @@ class _$FilmsImpl implements _Films {
   final String name;
   @override
   final int year;
+  @override
+  final String type;
   @override
   final String description;
   @override
@@ -272,7 +288,7 @@ class _$FilmsImpl implements _Films {
 
   @override
   String toString() {
-    return 'Films(id: $id, name: $name, year: $year, description: $description, rating: $rating, poster: $poster, ageRating: $ageRating, genres: $genres, countries: $countries)';
+    return 'Films(id: $id, name: $name, year: $year, type: $type, description: $description, rating: $rating, poster: $poster, ageRating: $ageRating, genres: $genres, countries: $countries)';
   }
 
   @override
@@ -283,6 +299,7 @@ class _$FilmsImpl implements _Films {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.year, year) || other.year == year) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -301,6 +318,7 @@ class _$FilmsImpl implements _Films {
       id,
       name,
       year,
+      type,
       description,
       rating,
       poster,
@@ -327,6 +345,7 @@ abstract class _Films implements Films {
       {required final int id,
       required final String name,
       required final int year,
+      required final String type,
       required final String description,
       required final Rating rating,
       required final Poster poster,
@@ -342,6 +361,8 @@ abstract class _Films implements Films {
   String get name;
   @override
   int get year;
+  @override
+  String get type;
   @override
   String get description;
   @override

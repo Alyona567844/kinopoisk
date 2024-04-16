@@ -14,6 +14,7 @@ class Films with _$Films {
     required int id,
     required String name,
     required int year,
+    required String type,
     required String description,
     required Rating rating,
     required Poster poster,

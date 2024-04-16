@@ -4,6 +4,7 @@ import 'package:kinopoisk/app/models/films/films.dart';
 import 'package:kinopoisk/app/repositories/api_repository.dart';
 
 class FirstController extends GetxController {
+
   ApiRepository apiRepository;
   FirstController(this.apiRepository);
 
