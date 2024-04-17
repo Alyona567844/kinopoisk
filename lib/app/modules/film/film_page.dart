@@ -107,11 +107,14 @@ class FilmPage extends GetView<FilmController> {
                               'https://cdn-icons-png.flaticon.com/128/7446/7446778.png',
                               width: 25,
                               height: 25,
-                              color: controller.selectedfilm != null
-                                  ? controller.colors[controller.selectedfilm!]
-                                          ?.value ??
-                                      Colors.white
-                                  : Colors.white,
+                              color: controller.selectedColor()?.value ??
+                                  Colors.white,
+                              // color: controller.selectedfilm != null
+                              //     ? controller
+                              //             .colors[controller.selectedfilm!]
+                              //             ?.value ??
+                              //         Colors.white
+                              //     : Colors.white,
                               // color: myController.myfilms
                               //         .contains(controller.selectedfilm)
                               //     ? colorO
@@ -121,12 +124,14 @@ class FilmPage extends GetView<FilmController> {
                               'Буду смотреть',
                               style: TextStyle(
                                 fontSize: 10,
-                                color: controller.selectedfilm != null
-                                    ? controller
-                                            .colors[controller.selectedfilm!]
-                                            ?.value ??
-                                        Colors.white
-                                    : Colors.white,
+                                color: controller.selectedColor()?.value ??
+                                    Colors.white,
+                                // color: controller.selectedfilm != null
+                                //     ? controller
+                                //             .colors[controller.selectedfilm!]
+                                //             ?.value ??
+                                //         Colors.white
+                                //     : Colors.white,
                               ),
                             ),
                           ],

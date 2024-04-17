@@ -131,6 +131,69 @@ class FindPage extends GetView<FindController> {
                 ],
               ),
             ),
+            const SizedBox(height: 30),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Популярные персоны',
+                    style: textB,
+                  ),
+                  Text(
+                    'Все',
+                    style: textO,
+                  )
+                ],
+              ),
+            ),
+            Obx(
+              () => SizedBox(
+                height: 225,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: controller.persons.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var film = controller.persons[index];
+                    return Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, right: 0, top: 0, bottom: 67),
+                          child: Container(
+                            width: 110,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(film.photo ?? ''),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 10,
+                          left: MediaQuery.of(context).size.width * 0.038,
+                          child: Container(
+                            color: Colors.white,
+                            width: 110,
+                            child: Text(
+                              film.name ?? '',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

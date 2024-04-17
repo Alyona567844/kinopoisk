@@ -177,7 +177,7 @@ class FirstPage extends GetView<FirstController> {
                           // onTap: () => Get.toNamed('film', arguments: film),
                           onTap: () {
                             filmController.updatethisfilm(film);
-                            Get.to(()=>FilmPage());
+                            Get.to(() => FilmPage());
                           },
                           child: Stack(
                             children: [
@@ -294,7 +294,7 @@ class FirstPage extends GetView<FirstController> {
                           // onTap: () => Get.toNamed('film', arguments: film),
                           onTap: () {
                             filmController.updatethisfilm(film);
-                            Get.to(()=>FilmPage());
+                            Get.to(() => FilmPage());
                           },
                           child: Stack(
                             children: [
@@ -394,7 +394,7 @@ class FirstPage extends GetView<FirstController> {
                         return GestureDetector(
                           onTap: () {
                             filmController.updatethisfilm(film);
-                            Get.to(()=>FilmPage());
+                            Get.to(() => FilmPage());
                           },
                           child: Stack(
                             children: [
@@ -494,7 +494,7 @@ class FirstPage extends GetView<FirstController> {
                         return GestureDetector(
                           onTap: () {
                             filmController.updatethisfilm(film);
-                            Get.to(()=>FilmPage());
+                            Get.to(() => FilmPage());
                           },
                           child: Stack(
                             children: [

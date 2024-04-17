@@ -14,6 +14,13 @@ class FilmController extends GetxController {
     update();
   }
 
+  Rx<Color>? selectedColor() {
+    if(selectedfilm != null && colors.containsKey(selectedfilm!)) {
+      return colors[selectedfilm!];
+    }
+    return null;
+  }
+
   final MyController myController = Get.find();
   // Films film = Get.arguments;
   // final color = Rx<Color>(Colors.white);

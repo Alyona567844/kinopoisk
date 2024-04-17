@@ -14,7 +14,6 @@ class ApiRepository {
       success: (jsonData) {
         var filmsJson = jsonData['docs'] as List<dynamic>;
         var films = filmsJson.map((json) => Films.fromJson(json)).toList();
-        print(films);
 
         List<Films> sortNew = [];
         for (var el in films) {
@@ -63,7 +62,9 @@ class ApiRepository {
 
         List<Films> movies = [];
         for (var el in films) {
-          if (el.type == 'movie' && !sortNew.contains(el) && !interesting.contains(el)) {
+          if (el.type == 'movie' &&
+              !sortNew.contains(el) &&
+              !interesting.contains(el)) {
             movies.add(el);
           }
         }
