@@ -103,37 +103,45 @@ class FilmPage extends GetView<FilmController> {
                         },
                         child: Column(
                           children: [
-                            Image.network(
-                              'https://cdn-icons-png.flaticon.com/128/7446/7446778.png',
-                              width: 25,
-                              height: 25,
-                              color: controller.selectedColor()?.value ??
-                                  Colors.white,
-                              // color: controller.selectedfilm != null
-                              //     ? controller
-                              //             .colors[controller.selectedfilm!]
-                              //             ?.value ??
-                              //         Colors.white
-                              //     : Colors.white,
-                              // color: myController.myfilms
-                              //         .contains(controller.selectedfilm)
-                              //     ? colorO
-                              //     : colorG,
-                            ),
-                            Text(
-                              'Буду смотреть',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: controller.selectedColor()?.value ??
-                                    Colors.white,
-                                // color: controller.selectedfilm != null
-                                //     ? controller
-                                //             .colors[controller.selectedfilm!]
-                                //             ?.value ??
-                                //         Colors.white
-                                //     : Colors.white,
-                              ),
-                            ),
+                            Obx(() => Image.network(
+                                  'https://cdn-icons-png.flaticon.com/128/7446/7446778.png',
+                                  width: 25,
+                                  height: 25,
+                                  color: controller
+                                          .colors[controller.selectedfilm]
+                                          ?.value ??
+                                      Colors.white,
+                                  // color: controller.selectedColor()?.value ??
+                                  //     Colors.white,
+                                  // color: controller.selectedfilm != null
+                                  //     ? controller
+                                  //             .colors[controller.selectedfilm!]
+                                  //             ?.value ??
+                                  //         Colors.white
+                                  //     : Colors.white,
+                                  // color: myController.myfilms
+                                  //         .contains(controller.selectedfilm)
+                                  //     ? colorO
+                                  //     : colorG,
+                                )),
+                            Obx(() => Text(
+                                  'Буду смотреть',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: controller
+                                            .colors[controller.selectedfilm]
+                                            ?.value ??
+                                        Colors.white,
+                                    // color: controller.selectedColor()?.value ??
+                                    //     Colors.white,
+                                    // color: controller.selectedfilm != null
+                                    //     ? controller
+                                    //             .colors[controller.selectedfilm!]
+                                    //             ?.value ??
+                                    //         Colors.white
+                                    //     : Colors.white,
+                                  ),
+                                )),
                           ],
                         ),
                       ),

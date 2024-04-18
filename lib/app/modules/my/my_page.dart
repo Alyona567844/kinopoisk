@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kinopoisk/app/constants/constants.dart';
+import 'package:kinopoisk/app/modules/film/film_controller.dart';
 import 'package:kinopoisk/app/modules/film/film_page.dart';
 import 'package:kinopoisk/app/modules/my/my_controller.dart';
 
@@ -9,6 +10,7 @@ class MyPage extends GetView<MyController> {
 
   @override
   Widget build(BuildContext context) {
+    final filmController = Get.put(FilmController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -38,20 +40,23 @@ class MyPage extends GetView<MyController> {
               ),
             ),
             Obx(
-              () => GestureDetector(
-                onTap: () => Get.to(()=>FilmPage()),
-                child: SizedBox(
-                  height: 225,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: controller.myfilms.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var film = controller.myfilms[index];
-                      List<String> genres =
-                          film.genres.map((genre) => genre.name).toList();
-                      String genrStr = genres[0];
-                      return Stack(
+              () => SizedBox(
+                height: 225,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: controller.myfilms.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var film = controller.myfilms[index];
+                    List<String> genres =
+                        film.genres.map((genre) => genre.name).toList();
+                    String genrStr = genres[0];
+                    return GestureDetector(
+                      onTap: () {
+                        filmController.updatethisfilm(film);
+                        Get.to(() => FilmPage());
+                      },
+                      child: Stack(
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(
@@ -112,9 +117,9 @@ class MyPage extends GetView<MyController> {
                             ),
                           ),
                         ],
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

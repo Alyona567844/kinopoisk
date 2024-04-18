@@ -7,18 +7,12 @@ import 'package:kinopoisk/app/modules/my/my_controller.dart';
 class FilmController extends GetxController {
   Films? selectedfilm;
   // FilmController(this.film);
-  final Map<Films, Rx<Color>> colors = {};
+  // final Map<Films, Rx<Color>> colors = {};
+  final colors = <Films, Rx<Color>>{}.obs;
 
   void updatethisfilm(Films film) {
     selectedfilm = film;
     update();
-  }
-
-  Rx<Color>? selectedColor() {
-    if(selectedfilm != null && colors.containsKey(selectedfilm!)) {
-      return colors[selectedfilm!];
-    }
-    return null;
   }
 
   final MyController myController = Get.find();
